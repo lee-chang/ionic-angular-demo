@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ionic-demo-app-cb7ca": {
+      "hosting": {
+        "app": [
+          "ionic-demo-app-cb7ca"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ionic-demo-app-cb7ca"
+  }
+}

@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { filter } from 'rxjs';
+
+import { AuthService } from './services/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -14,5 +18,19 @@ export class AppComponent {
     { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+
+  user$ = this.auth.authState$.pipe(
+    filter(state => state ? true : false)
+  );
+
+  constructor(
+    private auth:AuthService,
+    private router:Router
+  ) {}
+
+  async logout() {
+    await this.auth.logout();
+    this.router.navigate(['/login']);
+  }
+
 }
